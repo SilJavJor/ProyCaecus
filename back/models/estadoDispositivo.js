@@ -1,30 +1,31 @@
 'use strict';
 
 const { Model } = require('sequelize');
-const ModeloBase = require('./modelobase');
+//const ModeloBase = require('./modeloBase');
 
 module.exports = (sequelize, DataTypes) => {
-  class Roles extends ModeloBase {
-  // class Roles extends Model {
+  //class Roles extends ModeloBase {
+  class EstadoDispositivo extends Model {
       /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
+
+      static associate(models) {
       // define association here
     }
   }
 
-  // Inicializar la clase base
+  // Inicializar la clase base (ModeloBase)
   //super.initModeloBase(sequelize);
 
-  Roles.init({
-    //id:  DataTypes.INTEGER,
+  EstadoDispositivo.init({
+    id:  DataTypes.INTEGER,
 
-    descripcion: DataTypes.STRING,
+    estado_dispositivo: DataTypes.STRING,
 
-    // activo: DataTypes.INTEGER,
+    activo: DataTypes.INTEGER,
 
     por_defecto: DataTypes.INTEGER,
 
@@ -32,15 +33,15 @@ module.exports = (sequelize, DataTypes) => {
 
     creado_por:  DataTypes.STRING,
 
-    // fecha_creacion: DataTypes.NOW,
+    fecha_creacion: DataTypes.DATE,
 
     modificado_por:  DataTypes.STRING,
 
-    // fecha_modificacion: DataTypes.NOW,
+    fecha_modificacion: DataTypes.DATE,
   }, {
     sequelize,
-    modelName: 'Roles',
+    modelName: 'EstadoDispositivo',
   });
 
-  return Roles;
+  return EstadoDispositivo;
 };

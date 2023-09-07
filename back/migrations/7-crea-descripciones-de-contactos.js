@@ -4,7 +4,7 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('usuarios', {
+    await queryInterface.createTable('descripciones_contactos', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -12,45 +12,42 @@ module.exports = {
         type: Sequelize.INTEGER
       },
  
-      nombre: {
-        allowNull: false,
+      descripcion: {
         type: Sequelize.STRING(50)
       },
- 
-      contrasenia: {
-        allowNull: false,
-        type: Sequelize.STRING(30)
-      },
- 
-      email: {
-        allowNull: false,
-        type: Sequelize.STRING(150)
-      },
- 
-      id_rol: {
-         allowNull: false,
-         type: Sequelize.INTEGER,
-         references: {
-          model: 'roles', key: 'id'
-        } 
-      },
- 
-      descripcion_rol: {
-        type: Sequelize.STRING(50)
-      },
- 
+
       activo: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        defaultValue: 1 
+      },
+
+      por_defecto: {
         allowNull: false,
         type: Sequelize.INTEGER,
         defaultValue: 0 
       },
- 
+
+      // orden: {
+      //   allowNull: false,
+      //   type: Sequelize.INTEGER,
+      //   defaultValue: 0 
+      // },
+
+      creado_por: {
+        type: Sequelize.STRING(50)
+      },
+
       fecha_creacion: {
         type: Sequelize.DATEONLY,
         allowNull: true,
         defaultValue: Sequelize.DATEONLY
       },
- 
+
+      modificado_por: {
+        type: Sequelize.STRING(50)
+      },
+
       fecha_modificacion: {
         type: Sequelize.DATEONLY,
         allowNull: true,
@@ -61,6 +58,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('usuarios');
+    await queryInterface.dropTable('descripciones_contactos');
   }
 };
